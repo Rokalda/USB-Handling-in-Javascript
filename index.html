@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigator USB DEMO</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="usb_icon.png" >
+    
+</head>
+<body >
+   
+
+  </iframe>
+    <h1>USB Navigator DEMO</h1>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/USB" target="_blank" >MDN Reference</a>
+    
+    <div class="usblist_container">
+        
+        <div class="request_box">
+            <label for="vendorId">Enter the Vendor Id for the Connected USB Device (In Hexadecimal Format)</label>
+            <input type="text" name="vendorId" id="vendorId">
+            <button class="req_btn">Request a USB Device</button>
+        </div>
+
+        
+        <table >
+            <thead>
+                <tr>
+                    <th>ProductId</th>
+                    <th>VersionId</th>
+                    <th>Manufacturer Name</th>
+                    <th>Serial Number</th>
+                    <th>Product Name</th>
+                    
+                </tr>
+                <tbody>
+
+                </tbody>
+            </thead>
+        </table>
+    </div>
+    
+</body>
+<script src="usb.js"></script>
+</html>

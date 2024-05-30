@@ -1,0 +1,86 @@
+body{
+    margin:0;
+    background-color: rgb(229, 218, 203);
+    margin-inline: 3rem;
+}
+h1{
+    color:rgb(218, 98, 218);
+    font-family:'Courier New', Courier, monospace;
+    font-size:42px;
+    margin-bottom: 10px;
+
+}
+h1 + a{
+    text-decoration: none;
+    font-family: sans-serif;
+    font-size:24px;
+    display: block;
+    color:rgb(43, 85, 168);
+    width: fit-content;
+}
+h1 + a::after{
+    content: "";
+    display: inherit;
+    transition: scale 0.16s ease-in;
+    scale:0;
+    height: 3px;
+    background-color:currentColor;
+}
+h1 + a:hover::after{
+
+    scale:1;
+
+}
+.request_box{
+    margin-block:30px;
+}
+label[for=vendorId]{
+font-size: 20px;
+font-family: sans-serif;
+display: block;
+margin-bottom: 10px;
+font-weight: bolder;
+
+}
+input[name=vendorId]{
+
+font-size: 14px;
+margin-right: 30px;
+padding: 4px;
+
+}
+
+.req_btn{
+    --accent:rgb(123, 41, 123);
+    padding: 13px;
+    border-radius: 10px;
+    background-color: aliceblue;
+    color:var(--accent);
+    font-size:20px;
+    border:2px solid var(--accent);
+    font-family: sans-serif;
+    transition: color 0.4s ease,background-color 0.2s ease;
+
+}
+.req_btn:hover{
+    background-color:var(--accent);
+    color:aliceblue;
+
+}
+table{
+    border: 2px solid burlywood;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color:rgb(65, 50, 146);
+    width: 100%;
+    font-size:24px;
+    background-color: azure;
+    
+}
+
+table th{
+    color:rgb(44, 36, 36);
+    text-align: left;
+}
+ th, td{
+    padding: 5px;
+}
