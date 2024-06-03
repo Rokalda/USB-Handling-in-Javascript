@@ -18,9 +18,22 @@
     <div class="usblist_container">
         
         <div class="request_box">
-            <label for="vendorId">Enter the Vendor Id for the Connected USB Device (In Hexadecimal Format)</label>
-            <input type="text" name="vendorId" id="vendorId">
-            <button class="req_btn">Request a USB Device</button>
+            <h2>Filters for USB Devices</h2>
+            <p>*Note: If no filters are specified, the request will show all connected USB Devices</p>
+            <div class="filter_box">
+                <div class="input-box">
+                    <input type="text" name="vendorId" id="vendorId">
+                    <label for="vendorId">Vendor Id</label>
+                </div>
+                <div class="input-box">
+                    <input type="text" name="serialNumber" id="serialNumber">
+                    <label for="serialNumber">Serial Number</label>
+                </div>
+            </div>
+
+          
+            
+            <button class="btn req_btn">Request a USB Device</button>
         </div>
 
         
@@ -28,7 +41,7 @@
             <thead>
                 <tr>
                     <th>ProductId</th>
-                    <th>VersionId</th>
+                    <th>VendorId</th>
                     <th>Manufacturer Name</th>
                     <th>Serial Number</th>
                     <th>Product Name</th>
