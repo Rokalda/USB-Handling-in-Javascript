@@ -24,6 +24,7 @@ filter_inputs.forEach((input)=>{
     filtObj[input.id]=input.value;
   }
 })
+
     const filters = [
         
       
@@ -38,7 +39,10 @@ filter_inputs.forEach((input)=>{
             alert("This Device is already Paired")
         })
         .catch((e) => {
-        console.error(e)
+        if(e.name=="TypeError"){
+          alert(e.message)
+        }
+        
         });
      
   }
@@ -49,6 +53,7 @@ filter_inputs.forEach((input)=>{
     `<tr>
         <td>${device.productId}</td>
         <td>${device.vendorId}</td>
+        <td>${device.classCode}</td>
         <td>${device.manufacturerName}</td>
         <td>${device.serialNumber}</td>
         <td>${device.productName}</td>

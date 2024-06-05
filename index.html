@@ -19,15 +19,23 @@
         
         <div class="request_box">
             <h2>Filters for USB Devices</h2>
-            <p>*Note: If no filters are specified, the request will show all connected USB Devices</p>
+            <p>*Note: If all of the filters are left empty, it will return all USB devices connected.</p>
             <div class="filter_box">
                 <div class="input-box">
-                    <input type="text" name="vendorId" id="vendorId">
-                    <label for="vendorId">Vendor Id</label>
+                    <input type="text" name="vendorId" id="vendorId" required>
+                    <label for="vendorId">Vendor ID</label>
                 </div>
                 <div class="input-box">
-                    <input type="text" name="serialNumber" id="serialNumber">
+                    <input type="text" name="productId" id="productId" required>
+                    <label for="productId">Product ID</label>
+                </div>
+                <div class="input-box">
+                    <input type="text" name="serialNumber" id="serialNumber" required>
                     <label for="serialNumber">Serial Number</label>
+                </div>
+                <div class="input-box">
+                    <input type="text" name="classCode" id="classCode" required>
+                    <label for="classCode">Class Code</label>
                 </div>
             </div>
 
@@ -36,12 +44,14 @@
             <button class="btn req_btn">Request a USB Device</button>
         </div>
 
+        <h2>List of Paired USB Devices</h2>
         
         <table >
             <thead>
                 <tr>
-                    <th>ProductId</th>
-                    <th>VendorId</th>
+                    <th>PID</th>
+                    <th>VID</th>
+                    <th>Class Code</th>
                     <th>Manufacturer Name</th>
                     <th>Serial Number</th>
                     <th>Product Name</th>

@@ -5,7 +5,7 @@ body{
 }
 h1{
     color:rgb(218, 98, 218);
-    font-family:'Courier New', Courier, monospace;
+    font-family:'Courier New';
     font-size:42px;
     margin-bottom: 10px;
 
@@ -26,38 +26,50 @@ h1 + a::after{
     height: 3px;
     background-color:currentColor;
 }
+
 h1 + a:hover::after{
-
     scale:1;
-
 }
+
 p{
     font-size:19px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: sans-serif;
 }
+
 .request_box{
     margin-block:30px;
 }
+
 .input-box{
     margin: 10px;
 
     
 }
-.input-box input{
-
-font-size: 19px;
-margin-right: 20px;
-padding: 4px;
-border:2px solid rgb(24, 19, 19);
-
-
+.input-box input {
+    font-size: 19px;
+    margin-right: 20px;
+    padding: 4px;
+    border:none;
+    box-shadow: inset 0px 0px 20px 1px #c9ccce;
+    outline: 3px solid rgb(82 27 116);
+    border-radius: 5px;
+    
+    color: #0c2236;
 }
-
+.input-box input:focus{
+    outline-color:rgb(29, 190, 190);
+}
 .input-box label{
     font-size:24px;
+    transition: color 0.1s ease-in;
     font-weight: bold;
     font-family: sans-serif;
 }
+
+.input-box:not(:has(input:invalid)) label,.input-box:focus-within label{
+    color:rgb(0, 123, 255);
+}
+
 .btn{
     
     padding: 13px;
@@ -70,7 +82,7 @@ border:2px solid rgb(24, 19, 19);
     transition: color 0.4s ease,background-color 0.2s ease;
 
 }
-.btn:hover{
+.btn:hover , .btn:focus{
     background-color:var(--accent);
     color:aliceblue;
 
@@ -78,13 +90,20 @@ border:2px solid rgb(24, 19, 19);
 .req_btn{
     --accent:rgb(123, 41, 123);
 }
+
+h2{
+    font-family: monospace;
+    font-size:28px;
+}
 table{
-    border: 2px solid burlywood;
+    border-block: 5px solid rgba(35, 186, 93, 0.658);
+    border-radius:4px;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     color:rgb(65, 50, 146);
     width: 100%;
     font-size:24px;
     background-color: azure;
+
     
 }
 
