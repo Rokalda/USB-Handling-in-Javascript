@@ -95,6 +95,8 @@ h2{
     font-family: monospace;
     font-size:28px;
 }
+
+
 table{
     border-block: 5px solid rgba(35, 186, 93, 0.658);
     border-radius:4px;
@@ -108,9 +110,20 @@ table{
 }
 
 table th{
+  
     color:rgb(44, 36, 36);
     text-align: left;
 }
+
+
  th, td{
     padding: 5px;
+}
+td{
+    font-weight: bold;
+}
+
+td:empty::before {
+    content: "N/A";
+    
 }

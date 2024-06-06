@@ -5,8 +5,16 @@ if("usb" in navigator){
     // First fill the table with all prevoisly paired devices;
     let paired_devices=[]
     const table=document.querySelector("table");
+    navigator.usb.onconnect=(e)=>{
+      addDevice(e.device)
+    }
+
+
+    navigator.usb.ondisconnect=(e)=>{
+      removeDevice(e.device)
+    }
     navigator.usb.getDevices().then((devices) => {
-        paired_devices=devices;
+        
         devices.forEach((device) => {
         
           addDevice(device)
@@ -46,11 +54,14 @@ filter_inputs.forEach((input)=>{
         });
      
   }
-
+    
+    const update_ui=()=>document.querySelector(".list_h2").querySelector("span").textContent=`(${paired_devices.length})`
   function addDevice(device){
-    console.log(device)
+    
+    paired_devices.push(device)
+    update_ui()
     let tr = 
-    `<tr>
+    `<tr id="${device.vendorId}-${device.productId}">
         <td>${device.productId}</td>
         <td>${device.vendorId}</td>
         <td>${device.classCode}</td>
@@ -59,7 +70,16 @@ filter_inputs.forEach((input)=>{
         <td>${device.productName}</td>
 
     </tr>`
+
+    tr=tr.replaceAll("undefined","N/A")
   table.querySelector("tbody").innerHTML+=tr;
+  }
+
+  function removeDevice(device){
+    const r_index=paired_devices.indexOf(device);
+    paired_devices.splice(r_index,1)
+    update_ui()
+    table.querySelector("tbody").removeChild( table.querySelector("tbody").querySelector(`tr[id="${device.vendorId}-${device.productId}"]`))
   }
 }
 else{
