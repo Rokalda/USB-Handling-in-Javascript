@@ -1,9 +1,41 @@
 
 if("usb" in navigator){
  
-    
+const prop_modal=  document.getElementById("property_dialog")
     // First fill the table with all prevoisly paired devices;
     let paired_devices=[]
+    // These are the USB Device Propeties that can be shown on 
+    let usb_properties=[
+      {prop_name:"productId",display_name:"PID",shown:true},
+      {prop_name:"vendorId",display_name:"VID",shown:true},
+      {prop_name:"deviceClass",display_name:"Class Code",shown:true},
+      
+      
+      {prop_name:"manufacturerName",display_name:"Manufacturer Name",shown:true},
+      {prop_name:"serialNumber",display_name:"Serial Number",shown:true},
+      {prop_name:"productName",display_name:"Product Name",shown:true},
+      {prop_name:"deviceProtocol",display_name:"Device Protocol",shown:false},
+      {prop_name:"deviceSubclass",display_name:"Sub Class Code",shown:false},
+      {prop_name:"deviceVersionMajor",display_name:"Device Ver (MAJ)",shown:false},
+      {prop_name:"deviceVersionMinor",display_name:"Device Ver (MIN)",shown:false},
+
+
+    
+    ]
+
+    usb_properties.forEach(prop=>{
+    const propElement=  document.createElement("div");
+    propElement.className="prop"
+    
+    propElement.innerHTML=`
+    <label>
+      <input type="checkbox" name="${prop.prop_name}" id="${prop.prop_name}">
+      ${prop.display_name}
+    </label>`
+    propElement.querySelector("input").checked=prop.shown;
+
+      prop_modal.querySelector(".properties").appendChild(propElement)
+    })
     const table=document.querySelector("table");
     const tbody=table.querySelector("tbody");
 
@@ -26,7 +58,15 @@ if("usb" in navigator){
       
 const filter_inputs=document.querySelector(".filter_box").querySelectorAll("input")
   const req_btn=document.querySelector(".req_btn");
+  const prop_btn = document.querySelector(".prop_btn")
   req_btn.addEventListener("click",requestUSBDevice);
+
+  prop_modal.querySelector("#close").onclick=()=>prop_modal.close()
+  
+
+prop_btn.onclick=()=>  prop_modal.showModal()
+
+
 
   // added a quick, shortcut for the Request Button
 
