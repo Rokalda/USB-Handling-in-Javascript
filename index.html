@@ -34,9 +34,20 @@
                     <label for="serialNumber">Serial Number</label>
                 </div>
                 <div class="input-box">
-                    <input type="text" name="classCode" id="classCode" required>
-                    <label for="classCode">Class Code</label>
+                    <input type="text" name="deviceClass" id="deviceClass" required>
+                    <label for="deviceClass">Class Code</label>
                 </div>
+                <div class="input-box">
+                    <input type="text" name="deviceSubClass" id="deviceSubClass" required>
+                    <label for="deviceSubclass">Sub Class Code</label>
+                </div>
+                <div class="input-box">
+                    <input type="text" name="deviceProtocol" id="deviceProtocol" required>
+                    <label for="deviceProtocol">Protocol Code</label>
+                </div>
+
+
+
             </div>
 
           
@@ -45,7 +56,7 @@
         </div>
 
         <h2 class="list_h2">List of Connected, Paired USB Devices <span></span></h2>
-        
+        <button class="prop_btn">Hide / Show Device Properties</button>
         <table>
             <thead>
                 <tr>

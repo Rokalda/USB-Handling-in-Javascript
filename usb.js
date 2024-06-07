@@ -5,6 +5,8 @@ if("usb" in navigator){
     // First fill the table with all prevoisly paired devices;
     let paired_devices=[]
     const table=document.querySelector("table");
+    const tbody=table.querySelector("tbody");
+
     navigator.usb.onconnect=(e)=>{
       addDevice(e.device)
     }
@@ -13,6 +15,7 @@ if("usb" in navigator){
     navigator.usb.ondisconnect=(e)=>{
       removeDevice(e.device)
     }
+    // Get all devices previuosly paired and add them to the table
     navigator.usb.getDevices().then((devices) => {
         
         devices.forEach((device) => {
@@ -25,6 +28,15 @@ const filter_inputs=document.querySelector(".filter_box").querySelectorAll("inpu
   const req_btn=document.querySelector(".req_btn");
   req_btn.addEventListener("click",requestUSBDevice);
 
+  // added a quick, shortcut for the Request Button
+
+  document.addEventListener("keypress",(ev)=>{
+    if(ev.key=="Enter"){
+      
+      req_btn.click()
+    }
+
+  })
   function requestUSBDevice(){
   const filtObj={}
 filter_inputs.forEach((input)=>{
@@ -56,15 +68,17 @@ filter_inputs.forEach((input)=>{
   }
     
     const update_ui=()=>document.querySelector(".list_h2").querySelector("span").textContent=`(${paired_devices.length})`
+    
   function addDevice(device){
     
     paired_devices.push(device)
+    console.log(paired_devices)
     update_ui()
     let tr = 
     `<tr id="${device.vendorId}-${device.productId}">
         <td>${device.productId}</td>
         <td>${device.vendorId}</td>
-        <td>${device.classCode}</td>
+        <td>${device.deviceClass}</td>
         <td>${device.manufacturerName}</td>
         <td>${device.serialNumber}</td>
         <td>${device.productName}</td>
@@ -72,14 +86,14 @@ filter_inputs.forEach((input)=>{
     </tr>`
 
     tr=tr.replaceAll("undefined","N/A")
-  table.querySelector("tbody").innerHTML+=tr;
+  tbody.innerHTML+=tr;
   }
 
   function removeDevice(device){
     const r_index=paired_devices.indexOf(device);
     paired_devices.splice(r_index,1)
     update_ui()
-    table.querySelector("tbody").removeChild( table.querySelector("tbody").querySelector(`tr[id="${device.vendorId}-${device.productId}"]`))
+    tbody.removeChild(tbody.querySelector(`tr[id="${device.vendorId}-${device.productId}"]`))
   }
 }
 else{

@@ -22,12 +22,14 @@ h1 + a::after{
     content: "";
     display: inherit;
     transition: scale 0.16s ease-in;
+    transform-origin: right;
     scale:0;
     height: 3px;
     background-color:currentColor;
 }
 
 h1 + a:hover::after{
+    transform-origin: left;
     scale:1;
 }
 
@@ -41,7 +43,7 @@ p{
 }
 
 .input-box{
-    margin: 10px;
+    margin-block-end: 10px;
 
     
 }
@@ -50,7 +52,7 @@ p{
     margin-right: 20px;
     padding: 4px;
     border:none;
-    box-shadow: inset 0px 0px 20px 1px #c9ccce;
+    box-shadow: inset 0px 0px 10px 1px #c9ccce;
     outline: 3px solid rgb(82 27 116);
     border-radius: 5px;
     
@@ -58,6 +60,7 @@ p{
 }
 .input-box input:focus{
     outline-color:rgb(29, 190, 190);
+    box-shadow: none;
 }
 .input-box label{
     font-size:24px;
@@ -107,6 +110,23 @@ table{
     background-color: azure;
 
     
+}
+.prop_btn{
+   
+    background-color: transparent;
+    border:none;
+    font-size:26px;
+    font-family: sans-serif;
+    color:blue;
+    margin-bottom: 10px;
+    cursor: pointer;
+
+
+
+}
+
+.prop_btn:hover{
+    outline: 4px double currentColor;
 }
 
 table th{
