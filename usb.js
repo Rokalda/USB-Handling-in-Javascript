@@ -36,8 +36,10 @@ const tbody=table.querySelector("tbody");
     
     ]
     function hide_or_filterColumns(e){
+    
         let isShown=e.target.checked;
         let col_name=e.target.id;
+        usb_properties.find(prop=>prop.prop_name==col_name).shown=isShown;
         const affected_col= table.tHead.querySelector(`th.${col_name}`)
        
         if(isShown){
