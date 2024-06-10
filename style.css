@@ -82,6 +82,7 @@ p{
     font-size:20px;
     border:2px solid var(--accent);
     font-family: sans-serif;
+    cursor: pointer;
     transition: color 0.4s ease,background-color 0.2s ease;
 
 }
@@ -90,6 +91,7 @@ p{
     color:aliceblue;
 
 }
+
 .req_btn{
     --accent:rgb(123, 41, 123);
 }
@@ -100,17 +102,7 @@ h2{
 }
 
 
-table{
-    border-block: 5px solid rgba(35, 186, 93, 0.658);
-    border-radius:4px;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    color:rgb(65, 50, 146);
-    width: 100%;
-    font-size:24px;
-    background-color: azure;
 
-    
-}
 .prop_btn{
    
     background-color: transparent;
@@ -126,21 +118,73 @@ table{
 }
 
 .prop_btn:hover{
-    outline: 4px double currentColor;
+    outline: 2px dotted currentColor;
 }
-#property_dialog{
-    width:400px;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    background-color: rgb(255, 255, 255);
-    border:none;
-    box-shadow: 0px 0px 10px 5px gray;
-   
-    border-radius: 1em;
-    aspect-ratio: 3/4;
 
+#property_dialog {
+    transition: top 0.4s, opacity 0.4s;
+    width: 400px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background-color: rgb(169 155 155);
+    border: none;
+    box-shadow: 0px 0px 10px 5px gray;
+    padding: 0px;
+    border-radius: 1em;
+    position: fixed;
+    aspect-ratio: 3/4;
+    overflow: hidden;
+    top:5em;
+
+    pointer-events: none;
+    opacity: 0;
+}
+
+#property_dialog.open{
+    pointer-events: all;
+top:1em;
+opacity: 1;
+}
+
+
+#property_dialog main{
+    background-color: #f9fafa;
+    padding-inline: 2rem;
+}
+#property_dialog .properties{
+    height: 400px;
+    overflow: auto;
+   
+}
+
+#property_dialog .properties::-webkit-scrollbar {
+    background-color: #c9ccce;
+    border-radius: 10px;
+    width: 12px;
+    box-shadow: inset 0px 0px 6px 0px gray;
+}
+
+#property_dialog .properties::-webkit-scrollbar-thumb{
+    background-color: rgb(79, 72, 72);
+    border-radius: 10px;
+}
+#property_dialog .properties::-webkit-scrollbar-thumb:hover{
+    background-color: rgb(29, 129, 180);
 }
 #property_dialog h3{
     font-size:25px;
+    margin: 0;
+    padding-top: 20px;
+}
+#property_dialog h3::before{
+    content: "Select the Properties";
+    cursor: pointer;
+    
+    transition: color 0.1s ease;
+}
+#property_dialog h3:hover::before{
+    content:"Select All the Properties";
+    color:rgb(175, 47, 255);
+
 }
 #property_dialog .prop{
 font-size:27px;
@@ -148,6 +192,7 @@ display: flex;
 column-gap: 1rem;
 align-items: center;
 }
+
 #property_dialog .prop input{
     width: 20px;
     height: 20px;
@@ -165,17 +210,42 @@ align-items: center;
 } 
 
 #property_dialog .prop input:checked::after{
-    /* content: "";
-    display: inherit;
-    width: inherit;
-    aspect-ratio: inherit;
-    background-color: rgb(85, 85, 255); */
+
 
 }
-#property_dialog .btn_group{
-    background-color: #c9ccce;
 
+#property_dialog .btn_group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-block: 1.2em;
+
+    column-gap: 2em;
 }
+#property_dialog .btn_group button#close {
+    --accent: red;
+    font-size: 25px;
+    width: 200px;
+    padding: 8px 10px;
+    font-family: monospace;
+
+    border: 2px solid var(--accent);
+    
+    border-radius: 10px;
+}
+table{
+    border-block: 5px solid rgba(35, 186, 93, 0.658);
+    border-radius:4px;
+    border-collapse: collapse;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color:rgb(65, 50, 146);
+    width: 100%;
+    font-size:24px;
+    background-color: azure;
+
+    
+}
+
 table th{
   
     color:rgb(44, 36, 36);
@@ -186,6 +256,13 @@ table th{
  th, td{
     padding: 5px;
 }
+
+table tbody tr:hover{
+background-color: #e5e9ec;
+cursor: pointer;
+color:rgb(42, 8, 235);;
+}
+
 td{
     font-weight: bold;
 }
