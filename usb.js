@@ -169,8 +169,8 @@ prop_btn.onclick=showPropertyDialog
     tr.id=`${device.vendorId}-${device.productId}`
   
     console.log(device)
-    tr.onclick=async ()=>{
-      await openDevice(device)
+    tr.onclick=()=>{
+      
     }
     // Add every single property available by looping through them
     usb_properties.forEach((prop)=>{
