@@ -2,8 +2,9 @@
 if("usb" in navigator){
  
 const prop_modal=  document.getElementById("property_dialog")
+const USB_ERRORS={SecurityError:18}
 prop_modal.querySelector("h3").onclick=()=>{
-prop_modal.querySelectorAll("input[type=checkbox]").forEach((chbox)=>{
+prop_modal.querySelectorAll(".properties input[type=checkbox]").forEach((chbox)=>{
   if(!chbox.checked){
     chbox.click()
   }
@@ -35,7 +36,7 @@ const tbody=table.querySelector("tbody");
 
     
     ]
-    function hide_or_filterColumns(e){
+    function hide_or_showColumns(e){
     
         let isShown=e.target.checked;
         let col_name=e.target.id;
@@ -67,7 +68,7 @@ const tbody=table.querySelector("tbody");
     </label>`
 
     propElement.querySelector("input").checked=prop.shown;
-    propElement.querySelector("input").onchange=hide_or_filterColumns
+    propElement.querySelector("input").onchange=hide_or_showColumns
       prop_modal.querySelector(".properties").appendChild(propElement)
       // After adding the property checkboxes, Adding the header columns
 
@@ -128,11 +129,11 @@ prop_btn.onclick=showPropertyDialog
   })
   function requestUSBDevice(){
   const filtObj={}
-filter_inputs.forEach((input)=>{
-  if(input.value!==''){
-    filtObj[input.id]=input.value;
-  }
-})
+  filter_inputs.forEach((input)=>{
+    if(input.value!==''){
+      filtObj[input.dataset.prop]=input.value;
+    }
+  })
 
     const filters = [
         
@@ -161,23 +162,44 @@ filter_inputs.forEach((input)=>{
   function addDevice(device){
     
     paired_devices.push(device)
-    console.log(paired_devices)
+    
     update_ui()
     // Create the Device Row
     let tr = document.createElement("tr")
     tr.id=`${device.vendorId}-${device.productId}`
   
+    console.log(device)
+    tr.onclick=async ()=>{
+      await openDevice(device)
+    }
+    // Add every single property available by looping through them
     usb_properties.forEach((prop)=>{
      const td=document.createElement("td")
-     td.className=prop.prop_name
+     td.className=prop.prop_name;
+     // if propery is not to be shown, use hidden attribute
      td.hidden=!prop.shown;
      td.textContent=device[prop.prop_name]
      tr.appendChild(td)
+     
     })
 
   
   tbody.appendChild(tr);
+  tr.scrollIntoView({behavior:"smooth"})
+  
   }
+
+ async function openDevice(device){
+  try {
+    await device.open()
+  } catch (error) {
+    if(error.code==USB_ERRORS.SecurityError){
+      alert("Failed to Open the USB Device for security reasons")
+    }
+    
+  }
+ 
+ }
 
   function removeDevice(device){
     const r_index=paired_devices.indexOf(device);
@@ -185,6 +207,9 @@ filter_inputs.forEach((input)=>{
     update_ui()
     tbody.querySelector(`tr[id="${device.vendorId}-${device.productId}"]`).remove()
   }
+
+
+
 }
 else{
     document.body.innerHTML=
