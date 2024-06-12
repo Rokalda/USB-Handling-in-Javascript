@@ -7,7 +7,7 @@ h1{
     color:rgb(218, 98, 218);
     font-family:'Courier New';
     font-size:42px;
-    margin-bottom: 10px;
+    margin-block: 10px;
 
 }
 h1 + a{
@@ -137,6 +137,7 @@ h2{
 
     pointer-events: none;
     opacity: 0;
+    z-index:1;
 }
 
 #property_dialog.open{
@@ -191,6 +192,7 @@ font-size:27px;
 display: flex;
 column-gap: 1rem;
 align-items: center;
+
 }
 
 #property_dialog .prop input{
@@ -233,6 +235,60 @@ align-items: center;
     
     border-radius: 10px;
 }
+
+.filter_table_inputbox{
+    transition: width 0.22s cubic-bezier(0.11, 0.91, 0.91, 1.04);
+    border:2px solid #297c7c;
+    display: inline-grid;
+    align-items: center;
+    grid-template-columns: var(--icon-r) 1fr;
+    column-gap: 5px;
+    padding: 7px;
+    --icon-r:30px;
+    width: var(--icon-r);
+    height: var(--icon-r);
+    position: relative;
+    border-radius: 10px;
+    background-color: aliceblue;
+}
+.filter_table_inputbox:focus-within{
+    box-shadow: 0px 0px 14px 0px #a1f5fd;
+}
+
+.filter_table_inputbox .icon{
+width:var(--icon-r);
+aspect-ratio: 1;
+cursor: pointer;
+
+}
+
+
+.filter_table_inputbox:has(.icon.expand){
+    width:400px;
+}
+
+
+.filter_table_inputbox:has(.icon.expand) #filter_table_input{
+    display: block;
+}
+
+.filter_table_inputbox .popover{
+ position: absolute;
+ background-color: #f9fafa;
+ width:inherit;
+}
+    #filter_table_input{
+        border:none;
+        outline: none;
+        display: none;
+        background-color: transparent;
+        height: inherit;
+        font-family: monospace;
+        font-weight: bold;
+       
+        font-size: 22px;
+    }
+
 table{
     border-block: 5px solid rgba(35, 186, 93, 0.658);
     border-radius:4px;
@@ -242,6 +298,7 @@ table{
     width: 100%;
     font-size:24px;
     background-color: azure;
+    
 
     
 }
