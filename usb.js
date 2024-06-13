@@ -2,7 +2,9 @@
 if("usb" in navigator){
  
 const prop_modal=  document.getElementById("property_dialog")
+
 const USB_ERRORS={SecurityError:18}
+
 prop_modal.querySelector("h3").onclick=()=>{
 prop_modal.querySelectorAll(".properties input[type=checkbox]").forEach((chbox)=>{
   if(!chbox.checked){
@@ -10,6 +12,7 @@ prop_modal.querySelectorAll(".properties input[type=checkbox]").forEach((chbox)=
   }
 })
 }
+
 const table=document.querySelector("table");
 const tbody=table.querySelector("tbody");
     // First fill the table with all prevoisly paired devices;
@@ -102,6 +105,8 @@ const filter_inputs=document.querySelector(".filter_box").querySelectorAll("inpu
   const prop_btn = document.querySelector(".prop_btn")
   req_btn.addEventListener("click",requestUSBDevice);
 
+req_btn.parentElement.addEventListener("submit",(ev)=>ev.preventDefault())
+
   prop_modal.querySelector("#close").onclick=closePropertyDialog
   
 function closePropertyDialog(){
@@ -120,13 +125,7 @@ prop_btn.onclick=showPropertyDialog
 
   // added a quick, shortcut for the Request Button
 
-  document.addEventListener("keypress",(ev)=>{
-    if(ev.key=="Enter"){
-      
-      req_btn.click()
-    }
-
-  })
+  
   function requestUSBDevice(){
   const filtObj={}
   filter_inputs.forEach((input)=>{
@@ -140,6 +139,8 @@ prop_btn.onclick=showPropertyDialog
       
       ];
       filters.push(filtObj)
+     let options= JSON.stringify(filters)
+     console.log(options)
       navigator.usb
         .requestDevice({ filters })
         .then((device)=>{
