@@ -210,7 +210,6 @@ prop_btn.onclick=showPropertyDialog
   }
 
 
-
 }
 else{
     document.body.innerHTML=
